@@ -20,4 +20,3 @@
 @property (nonatomic, strong) UIColor *imageColor;
 
 @end
-

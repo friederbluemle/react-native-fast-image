@@ -5,4 +5,3 @@ public enum FastImageCacheControl {
     WEB,
     CACHE_ONLY
 }
-

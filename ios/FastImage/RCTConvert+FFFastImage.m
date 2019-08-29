@@ -19,13 +19,13 @@ RCT_ENUM_CONVERTER(FFFCacheControl, (@{
     if (!json) {
         return nil;
     }
-    
+
     NSString *uriString = json[@"uri"];
     NSURL *uri = [self NSURL:uriString];
-    
+
     FFFPriority priority = [self FFFPriority:json[@"priority"]];
     FFFCacheControl cacheControl = [self FFFCacheControl:json[@"cache"]];
-    
+
     NSDictionary *headers = [self NSDictionary:json[@"headers"]];
     if (headers) {
         __block BOOL allHeadersAreStrings = YES;
@@ -42,9 +42,9 @@ RCT_ENUM_CONVERTER(FFFCacheControl, (@{
             headers = nil;
         }
     }
-    
+
     FFFastImageSource *imageSource = [[FFFastImageSource alloc] initWithURL:uri priority:priority headers:headers cacheControl:cacheControl];
-    
+
     return imageSource;
 }
 

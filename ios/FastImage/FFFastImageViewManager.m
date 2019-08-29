@@ -35,4 +35,3 @@ RCT_EXPORT_METHOD(preload:(nonnull NSArray<FFFastImageSource *> *)sources)
 }
 
 @end
-

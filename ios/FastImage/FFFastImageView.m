@@ -134,18 +134,18 @@
             }
             self.hasCompleted = YES;
             [self sendOnLoad:image];
-            
+
             if (self.onFastImageLoadEnd) {
                 self.onFastImageLoadEnd(@{});
             }
             return;
         }
-        
+
         // Set headers.
         [_source.headers enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString* header, BOOL *stop) {
             [[SDWebImageDownloader sharedDownloader] setValue:header forHTTPHeaderField:key];
         }];
-        
+
         // Set priority.
         SDWebImageOptions options = SDWebImageRetryFailed;
         switch (_source.priority) {
@@ -159,7 +159,7 @@
                 options |= SDWebImageHighPriority;
                 break;
         }
-        
+
         switch (_source.cacheControl) {
             case FFFCacheControlWeb:
                 options |= SDWebImageRefreshCached;
@@ -170,7 +170,7 @@
             case FFFCacheControlImmutable:
                 break;
         }
-        
+
         if (self.onFastImageLoadStart) {
             self.onFastImageLoadStart(@{});
             self.hasSentOnLoadStart = YES;
@@ -179,7 +179,7 @@
         }
         self.hasCompleted = NO;
         self.hasErrored = NO;
-        
+
         [self downloadImage:_source options:options];
     }
 }
@@ -219,4 +219,3 @@
 }
 
 @end
-
