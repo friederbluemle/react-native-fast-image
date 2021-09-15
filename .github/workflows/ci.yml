@@ -1,0 +1,17 @@
+name: ci
+on: [ push ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: yarn --frozen-lockfile
+      - run: yarn build
+      - run: yarn dv-scripts ci
+        if: github.event.repository.fork == false
+        env:
+          CI: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - uses: codecov/codecov-action@v2
